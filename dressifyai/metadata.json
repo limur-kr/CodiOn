@@ -1,0 +1,8 @@
+{
+  "name": "DressifyAI",
+  "description": "AI-Powered personalized outfit recommendations based on your closet and local weather.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ]
+}
