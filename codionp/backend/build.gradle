@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.5'          // 사용 중인 버전에 맞춰도 됨
+    id 'io.spring.dependency-management' version '1.1.5'
+}
+
+group = 'com.team'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)        // ✅ 핵심: 자바 17
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    // Prometheus까지 쓸 거면 (메트릭 수집용)
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+}
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'io.github.cdimascio:java-dotenv:5.2.2'
+    implementation 'org.apache.poi:poi-ooxml:5.2.5'
+    // PostgreSQL
+    runtimeOnly 'org.postgresql:postgresql'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Swagger (springdoc)
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
